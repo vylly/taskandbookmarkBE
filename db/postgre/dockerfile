@@ -1,0 +1,4 @@
+FROM postgres
+WORKDIR /data/
+COPY data /data/
+COPY createtable.sql //docker-entrypoint-initdb.d//
