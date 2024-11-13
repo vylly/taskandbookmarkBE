@@ -1,4 +1,4 @@
-export const signinErrors = {
+export const signupErrors = {
   users_email_key: {
     code: 481,
     message: 'Duplicate email',

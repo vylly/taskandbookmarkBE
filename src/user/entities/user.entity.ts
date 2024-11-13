@@ -15,8 +15,5 @@ export class User {
   username: string;
 
   @Column({ type: 'text' })
-  pseudo: string;
-
-  @Column({ type: 'text' })
   password: string;
 }

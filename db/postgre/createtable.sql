@@ -11,7 +11,6 @@ CREATE TABLE users(
     email TEXT NOT NULL UNIQUE,
     username TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
-    pseudo TEXT NOT NULL
 );
 CREATE TABLE groups(
     id SERIAL PRIMARY KEY,

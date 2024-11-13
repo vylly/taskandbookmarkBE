@@ -4,7 +4,7 @@ import { Public } from 'src/decorators/public.decorator';
 import { LocalAuthGuard } from './local-auth.guard';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { UserService } from 'src/user/user.service';
-import { signinError } from './utils';
+import { signupError } from './utils';
 
 @Controller('auth')
 export class AuthController {
@@ -14,14 +14,15 @@ export class AuthController {
   ) {}
 
   @Public()
-  @Post('signin')
-  async create(@Body() createUserDto: CreateUserDto) {
+  @Post('signup')
+  async create(@Request() req, @Body() createUserDto: CreateUserDto) {
     console.log('createUserDto: ', createUserDto);
+    console.log('req:', req);
     try {
       const res = await this.userService.createUser(createUserDto);
-      return res;
+      return this.authService.login(res);
     } catch (error) {
-      const err = signinError(error.message);
+      const err = signupError(error.message);
       return err;
     }
   }

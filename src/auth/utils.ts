@@ -1,6 +1,6 @@
-import { signinErrors } from './constants';
+import { signupErrors } from './constants';
 
-export const signinError = (message: string) => {
+export const signupError = (message: string) => {
   const trunc = message.split('"')[1];
-  return signinErrors[trunc];
+  return signupErrors[trunc];
 };

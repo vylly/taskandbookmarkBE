@@ -11,13 +11,6 @@ const passwordRegEx =
 
 export class CreateUserDto {
   @IsNotEmpty()
-  @MinLength(3, { message: 'Pseudo must have atleast 3 characters.' })
-  @IsAlphanumeric(undefined, {
-    message: 'Pseudo does not allow other than alpha numeric chars.',
-  })
-  pseudo: string;
-
-  @IsNotEmpty()
   @MinLength(3, { message: 'Username must have atleast 3 characters.' })
   @IsAlphanumeric(undefined, {
     message: 'Username does not allow other than alpha numeric chars.',
