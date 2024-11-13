@@ -5,9 +5,9 @@ export class Editor {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'number' })
+  @Column()
   userid: number;
 
-  @Column({ type: 'number' })
+  @Column()
   groupid: number;
 }

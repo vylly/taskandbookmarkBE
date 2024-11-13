@@ -16,8 +16,6 @@ export class AuthController {
   @Public()
   @Post('signup')
   async create(@Request() req, @Body() createUserDto: CreateUserDto) {
-    console.log('createUserDto: ', createUserDto);
-    console.log('req:', req);
     try {
       const res = await this.userService.createUser(createUserDto);
       return this.authService.login(res);

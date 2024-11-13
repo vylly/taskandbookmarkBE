@@ -5,11 +5,13 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
+import { GroupService } from 'src/group/group.service';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+    private groupService: GroupService
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
@@ -19,7 +21,9 @@ export class UserService {
     const hashedPassword = await bcrypt.hash(createUserDto.password, salt);
     user.password = hashedPassword;
     user.username = createUserDto.username;
-    return this.userRepository.save(user);
+    const res = await this.userRepository.save(user);
+    await this.groupService.create({ name: user.username }, res);
+    return res;
   }
 
   findAllUser(): Promise<User[]> {

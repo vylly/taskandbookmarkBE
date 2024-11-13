@@ -7,4 +7,7 @@ export class Group {
 
   @Column({ type: 'text' })
   name: string;
+
+  @Column({ type: 'text' })
+  shareToken: string;
 }

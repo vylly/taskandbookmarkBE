@@ -14,7 +14,8 @@ CREATE TABLE users(
 );
 CREATE TABLE groups(
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    shareToken TEXT NOT NULL UNIQUE
 );
 CREATE TABLE owners(
     userid SERIAL NOT NULL,
