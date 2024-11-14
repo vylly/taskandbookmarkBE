@@ -8,6 +8,8 @@ import { GroupModule } from './group/group.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
+import { CategoriesModule } from './categories/categories.module';
+import { BookmarksModule } from './bookmarks/bookmarks.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
     UserModule,
     GroupModule,
     AuthModule,
+    CategoriesModule,
+    BookmarksModule,
   ],
   controllers: [AppController],
   providers: [

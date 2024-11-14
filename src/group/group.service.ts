@@ -11,7 +11,6 @@ import { JoinGroupDTO } from './dto/join-group.dto';
 
 @Injectable()
 export class GroupService {
-  createGroupDto: any;
   constructor(
     @InjectRepository(Group)
     private readonly groupRepository: Repository<Group>,
@@ -93,19 +92,8 @@ export class GroupService {
     if (!toJoin) {
       return { code: 470, message: 'No ground found' };
     }
-    const isOwner = await this.ownerRepository.findOne({
-      where: {
-        userid: userId,
-        groupid: toJoin.id,
-      },
-    });
-    const isEditor = await this.editorRepository.findOne({
-      where: {
-        userid: userId,
-        groupid: toJoin.id,
-      },
-    });
-    if (isOwner || isEditor) {
+    const isOwnerOrEditor = await this.isUserEditorOrOwner(userId, toJoin.id);
+    if (isOwnerOrEditor) {
       return { code: 471, message: 'Already a member' };
     }
 
@@ -114,5 +102,22 @@ export class GroupService {
     editor.groupid = toJoin.id;
     await this.editorRepository.save(editor);
     return toJoin;
+  }
+
+  async isUserEditorOrOwner(userid: number, groupid: number) {
+    const isOwner = await this.ownerRepository.findOne({
+      where: {
+        userid,
+        groupid,
+      },
+    });
+    const isEditor = await this.editorRepository.findOne({
+      where: {
+        userid,
+        groupid,
+      },
+    });
+
+    return isOwner || isEditor;
   }
 }

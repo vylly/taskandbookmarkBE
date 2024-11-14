@@ -30,7 +30,7 @@ CREATE TABLE editors(
 
 CREATE TABLE categories(
     id SERIAL PRIMARY KEY,
-    title TEXT NOT NULL
+    name TEXT NOT NULL UNIQUE
 );
 CREATE TABLE categoryingroup(
     categoryid SERIAL NOT NULL,
@@ -43,7 +43,8 @@ CREATE TABLE bookmarks(
     id SERIAL PRIMARY KEY,
     type TEXT NOT NULL,
     title TEXT NOT NULL,
-    content TEXT NOT NULL
+    content TEXT NOT NULL,
+    description TEXT
 );
 CREATE TABLE bookmarkingroup(
     bookmarkid SERIAL NOT NULL,
