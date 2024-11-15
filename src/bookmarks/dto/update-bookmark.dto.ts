@@ -1,6 +1,9 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateBookmarkDto {
+export class UpdateBookmarkDto {
+  @IsNotEmpty()
+  id: number;
+
   @IsNotEmpty()
   groupid: number;
 

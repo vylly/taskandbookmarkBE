@@ -35,11 +35,7 @@ export class GroupService {
 
   async getAllForUser(user: any) {
     const userId = user.userId || user.id;
-    console.log('userId: ', userId);
-    console.log(
-      'await this.ownerRepository.findBy({ userid: user.id }): ',
-      await this.ownerRepository.findBy({ userid: userId })
-    );
+
     const whereOwner = (
       await this.ownerRepository.findBy({ userid: userId })
     ).map((owner) => {
@@ -76,11 +72,9 @@ export class GroupService {
     if (!allGroups.length) {
       return { code: 460, message: 'ressource not available' };
     }
-    console.log('allGroups: ', allGroups);
     const res = await this.groupRepository.findOne({
       where: { id: allGroups[0] },
     });
-    console.log('res: ', res);
     return res;
   }
 
