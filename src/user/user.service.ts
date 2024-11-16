@@ -16,7 +16,7 @@ export class UserService {
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     const user: User = new User();
-    user.email = createUserDto.email;
+    // user.email = createUserDto.email;
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(createUserDto.password, salt);
     user.password = hashedPassword;
@@ -36,7 +36,7 @@ export class UserService {
 
   updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const user: User = new User();
-    user.email = updateUserDto.email;
+    // user.email = updateUserDto.email;
     user.password = updateUserDto.password;
     user.id = id;
     return this.userRepository.save(user);

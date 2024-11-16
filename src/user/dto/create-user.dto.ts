@@ -1,6 +1,6 @@
 import {
   IsAlphanumeric,
-  IsEmail,
+  // IsEmail,
   IsNotEmpty,
   // Matches,
   MinLength,
@@ -17,9 +17,9 @@ export class CreateUserDto {
   })
   username: string;
 
-  @IsNotEmpty()
-  @IsEmail(undefined, { message: 'Please provide valid Email.' })
-  email: string;
+  // @IsNotEmpty()
+  // @IsEmail(undefined, { message: 'Please provide valid Email.' })
+  // email: string;
 
   @IsNotEmpty()
   @MinLength(8, { message: 'Password must have atleast 8 characters.' })
